@@ -68,14 +68,34 @@ const login = async () => {
     })
   }
 }
+//自定义校验规则
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const validatorUserName = (rule: any, value: any, callback: any) => {
+  //rule:校验规则对象  value：表单元素的文本内容  callback：函数，如果符合条件就放行，不符合注入错误提示信息
+  if (value.length >= 5) {
+    callback()
+  } else {
+    callback(new Error('账号长度至少5位'))
+  }
+}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const validatorPassword = (rule: any, value: any, callback: any) => {
+  if (value.length >= 6) {
+    callback()
+  } else {
+    callback(new Error('密码长度至少6位'))
+  }
+}
 //定义表单校验需要的配置对象
 const rules = {
   username: [
-    { required: true, message: '用户名不能为空', trigger: 'blur' },
-    { min: 3, max: 5, message: '用户名长度必须要3-5位', trigger: 'change' },
+    //{ required: true, message: '用户名不能为空', trigger: 'blur' },
+    //{ min: 3, max: 5, message: '用户名长度必须要3-5位', trigger: 'change' },
+    { trigger: 'change', validator: validatorUserName }
   ],
   password: [
-    { required: true, min: 6, max: 15, message: '密码长度必须要6-15位', trigger: 'change' }
+    //{ required: true, min: 6, max: 15, message: '密码长度必须要6-15位', trigger: 'change' }，
+    { trigger: 'change', validator: validatorPassword }
   ]
 }
 </script>
