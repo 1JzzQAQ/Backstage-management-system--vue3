@@ -17,7 +17,7 @@
         <div class="layout_tabbar">456</div>
         <!-- 主要内容区 -->
         <div class="layout_main">
-            <router-view></router-view>
+            <Main></Main>
         </div>
     </div>
 </template>
@@ -27,6 +27,8 @@
 import Logo from './logo/logoIndex.vue'
 //引入菜单组件
 import Menu from './menu/menuIndex.vue'
+//右侧内容的展示区
+import Main from './main/mainIndex.vue'
 //获取用户相关的小仓库
 import useUserStore from '@/stores/modules/user'
 const userStore = useUserStore();
