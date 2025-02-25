@@ -6,7 +6,7 @@ import { reqLogin, reqUserInfo } from '@/api/user'
 import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { UserState } from './types/types'
 //引入操作本地存储的工具方法
-import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
+import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 //引入路由（常量路由）
 import { constantRoute } from '@/router/routes'
 //创建
@@ -49,6 +49,14 @@ const useUserStore = defineStore('User', {
             } else {
 
             }
+        },
+        //退出登录方法
+        async userLogout() {
+            //目前没有mock接口：退出登录接口
+            this.token = ''
+            this.username = ''
+            this.avatar = ''
+            REMOVE_TOKEN()
         }
     },
     getters: {

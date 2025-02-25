@@ -19,5 +19,7 @@ app.use(ElementPlus, {
 })
 //安装自定义插件
 app.use(globalComponent)
+//引入路由鉴权
+import './permission'
 //将应用挂载到挂载点上
 app.mount('#app')

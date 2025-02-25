@@ -3,18 +3,18 @@
         <el-button type="small" size="default" icon="Refresh" circle @click="updateRefsh"></el-button>
         <el-button type="small" size="default" icon="FullScreen" circle @click="fullScreen"></el-button>
         <el-button type="small" size="default" icon="Setting" circle></el-button>
-        <img src="../../../../favicon.ico" style="width:24px;height: 24px;margin:0 10px;">
+        <img :src="userStore.avatar" style="width:24px;height: 24px;margin:0 10px; border-radius: 10%;">
         <!--dropdown-->
         <el-dropdown>
             <span class="el-dropdown-link">
-                admin
+                {{ userStore.username }}
                 <el-icon class="el-icon--right">
                     <arrow-down />
                 </el-icon>
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item>Exit</el-dropdown-item>
+                    <el-dropdown-item @click="logout">Exit</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
@@ -22,9 +22,15 @@
 </template>
 
 <script setup lang="ts">
-//获取小仓库
+//获取骨架的小仓库
 import useLayOutSettingStore from '@/stores/modules/setting';
+//获取用户相关小仓库
+import useUserStore from '@/stores/modules/user';
+import { useRouter,useRoute } from 'vue-router';
+const $router = useRouter()
+const $route = useRoute()
 const layoutSettingStore = useLayOutSettingStore()
+const userStore = useUserStore()
 //refresh button click callback
 const updateRefsh = () => {
     layoutSettingStore.refsh = !layoutSettingStore.refsh
@@ -34,9 +40,17 @@ const fullScreen = () => {
     const full = document.fullscreenElement //dom对象的一个属性，用来判断当前是否全屏模式[fullscreen:true;no:false]
     if (!full) {
         document.documentElement.requestFullscreen()
-    }else{
+    } else {
         document.exitFullscreen()
     }
+}
+//click exit callback
+const logout = () => {
+    //1 step: 向服务器发请求[退出登录接口]
+    //2 step: 仓库中关于用户相关的数据清空[token|username|avatar]
+    userStore.userLogout()
+    //3 step: jump to login page
+    $router.push({ path: '/login', query: { redirect:$route.path} })
 }
 </script>
 

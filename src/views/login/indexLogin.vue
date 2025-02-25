@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue';
 import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router'
+import { useRouter,useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 //引入用户相关的小仓库
 import useUserStore from '@/stores/modules/user'
@@ -34,6 +34,7 @@ const useStore = useUserStore()
 const loginForms = ref()
 //获取路由器
 const $router = useRouter()
+const $route = useRoute()
 //定义变量控制按钮加载动画
 const loading = ref(false)
 //收集表单数据
@@ -51,7 +52,9 @@ const login = async () => {
     //可以书写.then的语法
     await useStore.userLogin(loginForm)
     //编程式导航跳转到展示数据的首页
-    $router.push('/')
+    // judge route has query or not
+    const rediret:any = $route.query.rediret
+    $router.push({path:rediret || '/'})
     //登录成功的提示信息
     ElNotification({
       type: 'success',
