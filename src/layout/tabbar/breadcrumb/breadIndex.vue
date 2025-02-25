@@ -6,16 +6,23 @@
     </el-icon>
     <!--left mianbao xie-->
     <el-breadcrumb separator-icon="ArrowRight">
-      <el-breadcrumb-item>权限管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+      <!--动态展示路由名字和标题-->
+      <el-breadcrumb-item v-for="(item,index) in $route.matched" :key="index" v-show="item.meta.title" :to="item.path">
+        <el-icon style="align-items: center;">
+          <component :is="item.meta.icon"></component>
+        </el-icon>
+        <span>{{ item.meta.title }}</span>
+      </el-breadcrumb-item>
     </el-breadcrumb>
 
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import useLayOutSettingStore from '@/stores/modules/setting';
 const LayOutSettingStore = useLayOutSettingStore()
+const $route = useRoute()
 //click func
 const changeIcon = () => {
   LayOutSettingStore.fold = !LayOutSettingStore.fold
