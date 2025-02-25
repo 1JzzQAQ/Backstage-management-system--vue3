@@ -15,7 +15,9 @@ const useUserStore = defineStore('User', {
     state: (): UserState => {
         return {
             token: GET_TOKEN(),//用户唯一标识token
-            menuRoutes: constantRoute //仓库存储生成菜单需要的数组（路由）
+            menuRoutes: constantRoute, //仓库存储生成菜单需要的数组（路由）
+            username: '',
+            avatar: '',
         }
     },
     //异步｜逻辑的地方
@@ -40,7 +42,13 @@ const useUserStore = defineStore('User', {
         async userInfo() {
             //获取用户信息存储仓库当中[头像，名字]
             const result = await reqUserInfo();
-            console.log(result)
+            //如果获取用户信息成功就存储用户信息
+            if (result.code == 200) {
+                this.username = result.data.checkUser.username
+                this.avatar = result.data.checkUser.avatar
+            } else {
+
+            }
         }
     },
     getters: {
