@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -9,9 +8,10 @@ import 'virtual:svg-icons-register'
 import globalComponent from '@/components'
 import App from './App.vue'
 import router from './router'
+import pinia from './stores'
 //获取应用对象实例
 const app = createApp(App)
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 //安装element-plus插件
 app.use(ElementPlus, {

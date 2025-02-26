@@ -1,7 +1,7 @@
 <template>
     <div class="layout_container">
         <!-- 左侧菜单 -->
-        <div class="layout_slider" :class="{ fold: LayOutSettingStore.fold ? true : false }">
+        <div class="layout_slider">
             <Logo></Logo>
             <!--展示菜单-->
             <!--滚动组件-->
@@ -67,9 +67,6 @@ const $route = useRoute()
             }
         }
 
-        &.fold {
-            width: 50px;
-        }
     }
 
     .layout_tabbar {
