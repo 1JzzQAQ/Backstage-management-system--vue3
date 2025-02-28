@@ -26,7 +26,7 @@
 import useLayOutSettingStore from '@/stores/modules/setting';
 //获取用户相关小仓库
 import useUserStore from '@/stores/modules/user';
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 const $router = useRouter()
 const $route = useRoute()
 const layoutSettingStore = useLayOutSettingStore()
@@ -45,12 +45,12 @@ const fullScreen = () => {
     }
 }
 //click exit callback
-const logout = () => {
+const logout = async () => {
     //1 step: 向服务器发请求[退出登录接口]
     //2 step: 仓库中关于用户相关的数据清空[token|username|avatar]
-    userStore.userLogout()
+    await userStore.userLogout()
     //3 step: jump to login page
-    $router.push({ path: '/login', query: { redirect:$route.path} })
+    $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
 

@@ -35,7 +35,7 @@ router.beforeEach(async (to: any, from: any, next: any) => {
                 } catch (error) {
                     //token过期或手动修改本地存储token
                     //退出登录-》清空用户数据
-                    userStore.userLogout()
+                    await  userStore.userLogout()
                     next({ path: '/login', query: { redirect: to.path } })
                 }
             }
