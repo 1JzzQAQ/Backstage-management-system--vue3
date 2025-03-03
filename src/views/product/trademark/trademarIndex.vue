@@ -40,7 +40,7 @@
                 -->
                 <el-upload class="avatar-uploader" action="/api/admin/product/fileUpload" :show-file-list="false"
                     :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+                    <img v-if="trademarkParams.logoUrl" :src="trademarkParams.logoUrl" class="avatar" />
                     <el-icon v-else class="avatar-uploader-icon">
                         <Plus />
                     </el-icon>
@@ -119,7 +119,11 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
     }
     return true
 }
-
+// 图片上传成功的钩子
+const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
+    //收集上传图片的地址，添加一个新的品牌的时候带给服务器
+    trademarkParams.logoUrl = response.data
+}
 </script>
 
 <style scoped>
