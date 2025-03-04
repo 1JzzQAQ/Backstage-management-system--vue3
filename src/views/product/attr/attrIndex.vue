@@ -12,13 +12,19 @@
           <el-table-column label="属性值名称">
             <template #="{ row, $index }">
               <el-tag style="margin: 5px;" v-for="(item, index) in row.attrValueList" :key="item.id">{{ item.valueName
-              }}</el-tag>
+                }}</el-tag>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="120px">
             <template #="{ row, $index }">
-              <el-button @click="updateAttr" size="small" type="primary" icon="Edit"></el-button>
-              <el-button size="small" type="danger" icon="Delete"></el-button>
+              <!--修改已有属性值-->
+              <el-button @click="updateAttr(row)" size="small" type="primary" icon="Edit"></el-button>
+              <el-popconfirm :title="`你确定删除已有的${row.attrName}吗？`" width="200px" @confirm="deleteAttr(row.id)">
+                <template #reference>
+                  <el-button size="small" type="danger" icon="Delete"></el-button>
+                </template>
+              </el-popconfirm>
+
             </template>
           </el-table-column>
         </el-table>
@@ -43,7 +49,11 @@
             </template>
           </el-table-column>
           <el-table-column label="操作">
-            
+            <template #="{ row, $index }">
+              <el-button type="danger" size="small" icon="Delete"
+                @click="attrParams.attrValueList.splice($index, 1)"></el-button>
+
+            </template>
           </el-table-column>
         </el-table>
         <el-button type="primary" size="default" @click="save"
@@ -55,9 +65,9 @@
 </template>
 
 <script setup lang="ts">
-import { watch, ref, reactive, nextTick } from 'vue'
+import { watch, ref, reactive, nextTick, onBeforeUnmount } from 'vue'
 //引入获取已有属性和属性值的接口方法
-import { reqAttr, reqAddOrUpdateAttr } from '@/api/product/attr';
+import { reqAttr, reqAddOrUpdateAttr, reqDeleteAttr } from '@/api/product/attr';
 //获取分类仓库
 import useCategoryStore from '@/stores/modules/category';
 import type { Attr, AttrResponseData, AttrValue } from '@/api/product/attr/type';
@@ -106,8 +116,10 @@ const addAttr = () => {
   scene.value = 1
 }
 //修改属性按钮回调
-const updateAttr = () => {
+const updateAttr = (row: Attr) => {
   scene.value = 1
+  //将已有的属性对象复制给attrparams对象
+  Object.assign(attrParams, JSON.parse(JSON.stringify(row)))
 }
 //取消按钮的回调
 const cancel = () => {
@@ -121,7 +133,7 @@ const addAttrValue = () => {
     flag: true//控制每个属性值的编辑/查看模式
   })
   nextTick(() => {
-    inputArr.value[attrParams.attrValueList.length-1 ].focus()
+    inputArr.value[attrParams.attrValueList.length - 1].focus()
   })
 }
 //保存按钮的回调
@@ -179,6 +191,27 @@ const toEdit = (row: AttrValue, $index: number) => {
     inputArr.value[$index].focus()
   })
 }
+const deleteAttr = async (attrId: number) => {
+  const result: any = await reqDeleteAttr(attrId)
+  if (result.code == 200) {
+    ElMessage({
+      type: 'success',
+      message: '删除成功'
+    })
+    //获取剩下已有属性（值）
+    getAttr()
+  } else {
+    ElMessage({
+      type: 'error',
+      message: '删除失败'
+    })
+  }
+}
+//路由组件销毁时清空仓库分类相关数据
+onBeforeUnmount(()=>{
+  //清空仓库数据
+  categoryStore.$reset()
+})
 </script>
 
 <style scoped></style>
