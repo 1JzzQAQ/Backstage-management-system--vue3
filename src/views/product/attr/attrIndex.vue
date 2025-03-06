@@ -12,7 +12,7 @@
           <el-table-column label="属性值名称">
             <template #="{ row, $index }">
               <el-tag style="margin: 5px;" v-for="(item, index) in row.attrValueList" :key="item.id">{{ item.valueName
-                }}</el-tag>
+              }}</el-tag>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="120px">
@@ -208,7 +208,7 @@ const deleteAttr = async (attrId: number) => {
   }
 }
 //路由组件销毁时清空仓库分类相关数据
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   //清空仓库数据
   categoryStore.$reset()
 })
