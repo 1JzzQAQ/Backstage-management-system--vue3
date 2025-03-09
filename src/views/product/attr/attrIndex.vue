@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--三级分类全局组件-->
-    <Category :scene="scence" />
+    <Category :scene="scene" />
     <el-card style="margin: 10px 0;">
       <div v-show="scene == 0">
         <el-button @click="addAttr" type="primary" size="default" icon="plus"
@@ -76,7 +76,7 @@ const categoryStore = useCategoryStore()
 //存储已有的属性和属性值
 const attrArr = ref<Attr[]>([])
 //定义卡片组件内容切换变量
-const scence = ref<number>(0)
+const scene = ref<number>(0)
 //收集新增属性的数据
 const attrParams = reactive<Attr>({
   attrName: "", //新增属性名字
