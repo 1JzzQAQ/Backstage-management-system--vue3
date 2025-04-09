@@ -99,7 +99,7 @@
     </el-drawer>
 </template>
 <script setup lang="ts">
-import useLayOutSettingStore from '@/store/modules/setting'
+import useLayOutSettingStore from '@/stores/modules/setting'
 import { ref, onMounted, reactive, nextTick } from 'vue';
 import { reqSelectUser, reqRemoveUser, reqUserInfo, reqAddOrUpdateUser, reqAllRole, reqSetUserRole } from '@/api/acl/user'
 import type { SetRoleData, UserResponseData, Records, User, AllRoleResponseData, AllRole } from '@/api/acl/user/type';
