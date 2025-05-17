@@ -10,8 +10,15 @@
           <Sex class="sex"></Sex>
           <Age class="age"></Age>
         </div>
-        <div class="center"></div>
-        <div class="right"></div>
+        <div class="center">
+          <Map class="map"></Map>
+          <Line class="line"></Line>
+        </div>
+        <div class="right">
+          <Rank class="rank"></Rank>
+          <Year class="year"></Year>
+          <Count class="count"></Count>
+        </div>
       </div>
     </div>
   </div>
@@ -23,6 +30,11 @@ import Top from './components/top/topIndex.vue'
 import Tourist from './components/tourist/touristIndex.vue'
 import Age from './components/age/ageIndex.vue'
 import Sex from './components/sex/sexIndex.vue'
+import Map from './components/map/mapIndex.vue'
+import Line from './components/line/lineIndex.vue'
+import Rank from './components/rank/rankIndex.vue'
+import Year from './components/year/yearIndex.vue'
+import Count from './components/count/countIndex.vue'
 
 const screen = ref()
 onMounted(() => {

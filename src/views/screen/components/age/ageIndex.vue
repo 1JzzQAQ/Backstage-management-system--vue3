@@ -64,7 +64,7 @@ onMounted(() => {
       left: 0,
       top: 0,
       right: 0,
-      
+      bottom:100,      
     }
   };
   mychart.setOption(option)
