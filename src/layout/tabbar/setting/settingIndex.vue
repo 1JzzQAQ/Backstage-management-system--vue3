@@ -42,7 +42,6 @@ import { useRouter, useRoute } from 'vue-router';
 import useUserStore from '@/stores/modules/user';
 //获取骨架的小仓库
 import useLayOutSettingStore from '@/stores/modules/setting';
-import { teleportProps } from 'element-plus/es/components/teleport/index.mjs';
 const layoutSettingStore = useLayOutSettingStore();
 const userStore = useUserStore();
 //获取路由器对象

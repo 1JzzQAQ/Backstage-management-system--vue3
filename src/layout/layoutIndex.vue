@@ -7,7 +7,8 @@
             <!--滚动组件-->
             <el-scrollbar class="scrollbar">
                 <!--菜单组件-->
-                <el-menu :collapse="LayOutSettingStore.fold?true:false" :default-active="$route.path" background-color="#001529" text-color="white">
+                <el-menu :collapse="LayOutSettingStore.fold ? true : false" :default-active="$route.path"
+                    background-color="#001529" text-color="white">
                     <!--根据路由动态生成菜单-->
                     <Menu :menuList="userStore.menuRoutes"></Menu>
                 </el-menu>
@@ -78,7 +79,7 @@ const $route = useRoute()
         transition: all 0.3s;
 
         &.fold {
-            width: calc(100% - 50px);
+            width: calc(100vh - 50px);
             left: 50px;
         }
     }
