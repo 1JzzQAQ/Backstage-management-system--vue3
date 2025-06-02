@@ -61,7 +61,6 @@
                             <Plus />
                         </el-icon>
                     </el-upload>
-
                 </el-form-item>
             </el-form>
             <!-- 具名插槽:footer -->
@@ -112,12 +111,6 @@ const getHasTrademark = async (pager = 1) => {
 onMounted(() => {
     getHasTrademark();
 });
-//分页器当前页码发生变化的时候会触发
-//对于当前页码发生变化自定义事件,组件pagination父组件回传了数据(当前的页码)
-// const changePageNo = ()=>{
-//     //当前页码发生变化的时候再次发请求获取对应已有品牌数据展示
-//     getHasTrademark();
-// }
 
 //当下拉菜单发生变化的时候触发次方法
 //这个自定义事件,分页器组件会将下拉菜单选中数据返回
