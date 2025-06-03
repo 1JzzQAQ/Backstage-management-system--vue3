@@ -172,7 +172,7 @@ const deleteSpu = async (row: SpuData) => {
     }
 }
 
-//路由组件销毁前，情况仓库关于分类的数据
+//路由组件销毁前，清空仓库关于分类的数据
 onBeforeUnmount(() => {
     categoryStore.$reset();
 })

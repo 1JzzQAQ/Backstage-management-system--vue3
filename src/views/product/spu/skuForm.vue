@@ -118,7 +118,7 @@ const cancel = () => {
 }
 //设置默认图片的方法回调
 const handler = (row: any) => {
-  //点击的时候,全部图片的的复选框不勾选
+  //点击的时候,全部图片的复选框不勾选
   imgArr.value.forEach((item: any) => {
     table.value.toggleRowSelection(item, false);
   });
