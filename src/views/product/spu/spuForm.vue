@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-for -->
 <template>
     <el-form label-width="100px">
         <el-form-item label="SPU名称">
@@ -139,7 +140,7 @@ const handlePictureCardPreview = (file: any) => {
 }
 //照片墙删除文件钩子
 const handleRemove = () => {
-    console.log(123);
+    
 }
 //照片钱上传成功之前的钩子约束文件的大小与类型
 const handlerUpload = (file: any) => {
@@ -231,7 +232,6 @@ const toLook = (row: SaleAttr) => {
         })
         return;
     }
-
 
     //追加新的属性值对象
     row.spuSaleAttrValueList.push(newSaleAttrValue);
