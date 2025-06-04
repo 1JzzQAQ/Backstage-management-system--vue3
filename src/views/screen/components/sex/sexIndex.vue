@@ -132,6 +132,7 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     color: white;
+    margin: 0 100px;
   }
 
   .charts {

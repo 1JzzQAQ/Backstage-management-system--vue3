@@ -13,7 +13,6 @@
 import { ref, onMounted } from 'vue';
 //引入echarts
 import * as echarts from 'echarts';
-import { Right } from '@element-plus/icons-vue';
 const charts = ref();
 
 onMounted(() => {

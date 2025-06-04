@@ -79,10 +79,11 @@ window.onresize = () => {
         flex: 1;
         display: flex;
         flex-direction: column;
+        height: 1040px;
         margin-left: 40px;
 
         .rank {
-          flex: 1.5;
+          flex: 1.2;
         }
 
         .year {
