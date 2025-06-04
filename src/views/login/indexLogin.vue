@@ -53,8 +53,8 @@ const login = async () => {
     await useStore.userLogin(loginForm)
     //编程式导航跳转到展示数据的首页
     // judge route has query or not
-    const rediret:any = $route.query.rediret
-    $router.push({path:rediret || '/'})
+    const redirect:any = $route.query.redirect
+    $router.push({path:redirect || '/'})
     //登录成功的提示信息
     ElNotification({
       type: 'success',

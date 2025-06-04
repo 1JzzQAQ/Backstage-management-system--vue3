@@ -51,11 +51,11 @@ onMounted(() => {
           show: false
         },
         data: [
-          { value: 1048, name: '军事' },
-          { value: 735, name: '新闻' },
-          { value: 580, name: '直播' },
-          { value: 484, name: '娱乐' },
-          { value: 300, name: '财经' }
+          { value: 1048, name: '60upper' },
+          { value: 735, name: '41-60' },
+          { value: 580, name: '31-40' },
+          { value: 484, name: '21-30' },
+          { value: 300, name: '0-20' }
         ]
       }
     ],

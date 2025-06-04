@@ -31,7 +31,8 @@ router.beforeEach(async (to: any, from: any, next: any) => {
             } else {
                 try {
                     await userStore.userInfo()
-                    next()
+                    next(...to)
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 } catch (error) {
                     //token过期或手动修改本地存储token
                     //退出登录-》清空用户数据
