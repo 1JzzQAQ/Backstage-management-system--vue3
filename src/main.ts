@@ -23,5 +23,8 @@ app.use(ElementPlus, {
 app.use(globalComponent)
 //引入路由鉴权
 import './permission'
+import './directive/has'
+import { isHasButton } from './directive/has'
+isHasButton(app)
 //将应用挂载到挂载点上
 app.mount('#app')

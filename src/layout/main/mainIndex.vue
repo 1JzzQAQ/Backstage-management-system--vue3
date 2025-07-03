@@ -2,6 +2,7 @@
   <div>
     <!--路由组件出口位置-->
     <router-view v-slot="{ Component }">
+      <!--过度动画-->
       <transition name="fade">
         <!--渲染layout一级路由组件的子路由-->
         <component :is="Component" v-if="flag" />
